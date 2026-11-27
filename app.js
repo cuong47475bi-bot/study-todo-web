@@ -88,5 +88,6 @@ filterButtons.forEach((btn) => {
     renderTodos();
   });
 });
-
+const remaining = todos.filter((t) => !t.completed).length;
+document.getElementById("task-counter").textContent = `Còn ${remaining} việc chưa xong`;
 renderTodos();
