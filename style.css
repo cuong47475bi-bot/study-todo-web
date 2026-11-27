@@ -84,6 +84,21 @@ h1 {
   font-weight: bold;
 }
 
+.clear-completed-btn {
+  margin-bottom: 16px;
+  padding: 8px 12px;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  background: #fef2f2;
+  color: #b91c1c;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.clear-completed-btn:hover {
+  background: #fee2e2;
+}
+
 .todo-list {
   list-style: none;
   display: flex;

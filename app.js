@@ -7,6 +7,7 @@ const form = document.getElementById("todo-form");
 const input = document.getElementById("todo-input");
 const list = document.getElementById("todo-list");
 const filterButtons = document.querySelectorAll(".filter-btn");
+const clearCompletedButton = document.getElementById("clear-completed-btn");
 
 function saveTodos() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
@@ -61,6 +62,12 @@ function renderTodos() {
     li.appendChild(delBtn);
     list.appendChild(li);
   });
+
+  const counterEl = document.getElementById("task-counter");
+  if (counterEl) {
+    const remaining = todos.filter((t) => !t.completed).length;
+    counterEl.textContent = `Còn ${remaining} việc chưa xong`;
+  }
 }
 
 form.addEventListener("submit", (e) => {
@@ -88,12 +95,11 @@ filterButtons.forEach((btn) => {
     renderTodos();
   });
 });
-function renderTodos() {
-  // ... phần code render danh sách hiện có của bạn ...
 
-  const counterEl = document.getElementById("task-counter");
-  if (counterEl) {
-    const remaining = todos.filter((t) => !t.completed).length;
-    counterEl.textContent = `Còn ${remaining} việc chưa xong`;
-  }
-}
+clearCompletedButton.addEventListener("click", () => {
+  todos = todos.filter((item) => !item.completed);
+  saveTodos();
+  renderTodos();
+});
+
+renderTodos();
